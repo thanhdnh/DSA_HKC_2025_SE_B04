@@ -70,6 +70,27 @@
         else
             return BinSearch2(arr, value, from, mid - 1);
     }
+    static int TriSearch(int[] arr, int value)
+    {
+        int left = 0, right = arr.Length - 1;
+        while (left <= right){
+            int mid1 = (left + right) / 3;
+            int mid2 = 2 * (left + right) / 3;
+            if (arr[mid1] == value)
+                return mid1;
+            else if (arr[mid2] == value)
+                return mid2;
+            else if (value < arr[mid1])
+                right = mid1 - 1;
+            else if (value > arr[mid2])
+                left = mid2 + 1;
+            else{
+                left = mid1 + 1;
+                right = mid2 - 1;
+            }
+        }
+        return -1;
+    }
     private static void Main(string[] args)
     {
         //int[] array = { 3, 7, 5, 9, 1 };
@@ -79,8 +100,10 @@
         //int index_by_sen = SenSearch(array, 99);
         //Console.WriteLine($"{index_by_sen}");
         int[] sorted_array = { 1, 3, 5, 7, 9 };
-        int index_by_bin = BinSearch(sorted_array, 7);
-        int index_by_bin2 = BinSearch2(sorted_array, 7, 0, sorted_array.Length - 1);
-        Console.WriteLine($"{index_by_bin}, {index_by_bin}");
+        //int index_by_bin = BinSearch(sorted_array, 7);
+        //int index_by_bin2 = BinSearch2(sorted_array, 7, 0, sorted_array.Length - 1);
+        //Console.WriteLine($"{index_by_bin}, {index_by_bin}");
+        int index_by_tri = TriSearch(sorted_array, 7);
+        Console.WriteLine($"{index_by_tri}");
     }
 }
