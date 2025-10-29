@@ -40,17 +40,47 @@
             return index;
         else
             if (arr[arr.Length - 1] == value)
-                return arr.Length - 1;
+            return arr.Length - 1;
+        else
+            return -1;
+    }
+    static int BinSearch(int[] arr, int value)
+    {
+        int left = 0, right = arr.Length - 1;
+        while (left <= right)
+        {
+            int mid = (left + right) / 2;
+            if (arr[mid] == value)
+                return mid;
+            else if (arr[mid] < value)
+                left = mid + 1;
             else
-                return -1;
+                right = mid - 1;
+        }
+        return -1;
+    }
+    static int BinSearch2(int[] arr, int value,
+                                    int from, int to)
+    {
+        int mid = (from + to) / 2;
+        if (arr[mid] == value)
+            return mid;
+        else if (arr[mid] < value)
+            return BinSearch2(arr, value, mid + 1, to);
+        else
+            return BinSearch2(arr, value, from, mid - 1);
     }
     private static void Main(string[] args)
     {
-        int[] array = { 3, 7, 5, 9, 1 };
+        //int[] array = { 3, 7, 5, 9, 1 };
         //int index_by_recu = RecuSearch(array, 0, 9);
         //int index_by_recu2 = RecuSearch2(array, 9);
         //Console.WriteLine($"{index_by_recu}, {index_by_recu2}");
-        int index_by_sen = SenSearch(array, 99);
-        Console.WriteLine($"{index_by_sen}");
+        //int index_by_sen = SenSearch(array, 99);
+        //Console.WriteLine($"{index_by_sen}");
+        int[] sorted_array = { 1, 3, 5, 7, 9 };
+        int index_by_bin = BinSearch(sorted_array, 7);
+        int index_by_bin2 = BinSearch2(sorted_array, 7, 0, sorted_array.Length - 1);
+        Console.WriteLine($"{index_by_bin}, {index_by_bin}");
     }
 }
