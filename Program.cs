@@ -83,9 +83,9 @@
             else if (value < arr[mid1])
                 right = mid1 - 1;
             else if (value > arr[mid2])
-                left = mid2 + 1;
+                left = mid2;  //mid2 + 1;
             else{
-                left = mid1 + 1;
+                left = mid1; //mid1 + 1;
                 right = mid2 - 1;
             }
         }
@@ -104,6 +104,6 @@
         //int index_by_bin2 = BinSearch2(sorted_array, 7, 0, sorted_array.Length - 1);
         //Console.WriteLine($"{index_by_bin}, {index_by_bin}");
         int index_by_tri = TriSearch(sorted_array, 7);
-        Console.WriteLine($"{index_by_tri}");
+        Console.WriteLine($"Triple: {index_by_tri}");
     }
 }
